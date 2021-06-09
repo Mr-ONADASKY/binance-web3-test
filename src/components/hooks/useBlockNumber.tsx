@@ -2,12 +2,14 @@ import { useWeb3React } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 import useSWR from 'swr';
 
+// Blocknumber hook
 const getBlockNumber = (library: Web3Provider) => {
   return () => {
     return library.getBlockNumber();
   };
 };
 
+// Fetch blocks every 10 seconds
 const useBlockNumber = () => {
   const { library } = useWeb3React<Web3Provider>();
 
