@@ -1,7 +1,8 @@
 import React from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { UseWalletProvider } from 'use-wallet';
+import { Web3ReactProvider } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
 import Home from './pages/home';
 
 const theme = createMuiTheme({
@@ -19,15 +20,9 @@ function App() {
   );
 }
 
-// Wrap everything in <UseWalletProvider />
+// Wrap everything in <Web3ReactProvider />
 export default () => (
-  <UseWalletProvider
-    chainId={1}
-    connectors={{
-      // This is how connectors get configured
-      portis: { dAppId: 'Binance-web3-test' },
-    }}
-  >
+  <Web3ReactProvider getLibrary={(provider) => new Web3Provider(provider)}>
     <App />
-  </UseWalletProvider>
+  </Web3ReactProvider>
 );
